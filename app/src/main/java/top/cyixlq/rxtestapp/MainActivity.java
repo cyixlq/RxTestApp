@@ -1,5 +1,6 @@
 package top.cyixlq.rxtestapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,7 +42,16 @@ public class MainActivity extends AppCompatActivity implements JokerContract.Vie
 
     private void initData(){
         mList=new ArrayList<>();
-        mAdapter=new JokerAdapter(mList);
+        mAdapter=new JokerAdapter(mList,this);
+        mAdapter.setOnItemClickListener(new JokerAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                String url=mList.get(position).getVideouri();
+                Intent intent=new Intent(MainActivity.this,VideoPlayActivity.class);
+                intent.putExtra("url",url);
+                startActivity(intent);
+            }
+        });
         LinearLayoutManager manager=new LinearLayoutManager(MainActivity.this);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
