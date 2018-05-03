@@ -57,7 +57,7 @@ public class JokerAdapter extends RecyclerView.Adapter<JokerAdapter.MyViewHolder
         return list.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView txt_title;
         TextView txt_content;
@@ -71,10 +71,12 @@ public class JokerAdapter extends RecyclerView.Adapter<JokerAdapter.MyViewHolder
         }
     }
 
+    //建立点击事件接口
     public interface OnItemClickListener{
         void onClick( int position);
     }
 
+    //对外暴露设置点击事件
     public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
         this.mOnItemClickListener=onItemClickListener;
     }
